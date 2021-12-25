@@ -32,7 +32,7 @@ function LogIn({navigation}) {
         } else if(user.length < 4 || pass.length < 8){
             Alert.alert("Invalid Input", "Cannot input username less than 4 characters or password less than 8 characters", [{text: "Okay"}]);
         } else {
-            const url = `http://localhost:8080/api/users/validation`;
+            const url = ` https://birthday-christmas-app-backend.herokuapp.com/api/users/validation`;
             axios.post(url, json, {
                 headers: {'Content-Type': 'application/json'}
             })

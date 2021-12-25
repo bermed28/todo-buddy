@@ -29,7 +29,7 @@ function SignUp({navigation}) {
 
     function handleSignUp(navigation) {
         const json = {ufirstname: firstName, ulastname: lastName, username: username, uemail: email, upassword: password}
-        const url = `http://localhost:8080/api/users`;
+        const url = ` https://birthday-christmas-app-backend.herokuapp.com/api/users`;
         if(firstName === "" || lastName === "" || email === "" || password === "" || username === ""){
             Alert.alert("Invalid Input", "Fields cannot be emtpy", [{text: "Okay"}]);
         } else {

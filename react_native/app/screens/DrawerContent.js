@@ -23,7 +23,7 @@ function DrawerContent(props){
     function fetchUserInformation() {
         AsyncStorage.getItem('userToken').then(
             (uid) => {
-                const url = `http://localhost:8080/api/users/${uid}`
+                const url = ` https://birthday-christmas-app-backend.herokuapp.com/api/users/${uid}`
                 console.log(url)
                 axios.get(url).then((response) => {
                     console.log("UsrerInfo:", response.data)

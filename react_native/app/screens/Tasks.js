@@ -49,7 +49,7 @@ function ToDoListMain({navigation}){
 
         AsyncStorage.getItem('userToken').then(
             (uid) => {
-                const url = `http://localhost:8080/api/todo/${uid}`
+                const url = ` https://birthday-christmas-app-backend.herokuapp.com/api/todo/${uid}`
                 console.log(url)
                 axios.get(url).then((response) => {
                     setCurrentTasks(response.data)
@@ -137,7 +137,7 @@ function ManageTask({route, navigation}){
         console.log("DEFAULT TIME:", defaultTime)
         const json = {tdtask: tName, tdtime: editedTime ? inputTime : defaultTime , tddate: editedDate ? inputDate : defaultDate, uid: uid};
         console.log("JSON:",json)
-        const url = `http://localhost:8080/api/todo/${tdid}`
+        const url = ` https://birthday-christmas-app-backend.herokuapp.com/api/todo/${tdid}`
         axios.put(url, json, {
             headers: {'Content-Type': 'application/json'}
         })
@@ -241,7 +241,7 @@ function CreateTask({navigation}){
             const inputTime = time.getHours() + ":" + time.getMinutes() + ":" +time.getSeconds()
             const inputDate = date.getFullYear() + "-" + date.getMonth() + '-' + date.getDay()
             const json = {tdtask: taskName, tdtime: inputTime, tddate: inputDate, uid: uid};
-            const url = 'http://localhost:8080/api/todo'
+            const url = ' https://birthday-christmas-app-backend.herokuapp.com/api/todo'
             axios.post(url, json, {
                 headers: {'Content-Type': 'application/json'}
             })
@@ -329,7 +329,7 @@ function Tasks({navigation}) {
     function fetchUserInformation() {
         AsyncStorage.getItem('userToken').then(
             (uid) => {
-                const url = `http://localhost:8080/api/users/${uid}`
+                const url = ` https://birthday-christmas-app-backend.herokuapp.com/api/users/${uid}`
                 console.log(url)
                 axios.get(url).then((response) => {
                     setUser(response.data)
