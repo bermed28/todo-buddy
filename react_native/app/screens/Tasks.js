@@ -305,7 +305,7 @@ function CreateTask({navigation}){
                     <FontAwesome name={'clock-o'} color={"#05375a"} size={25}/>
                     <DateTimePicker
                         style={{width: 115}}
-                        value={date}
+                        value={time}
                         mode="time"
                         onChange={(event, time) => {setTime(time)}}
                     />

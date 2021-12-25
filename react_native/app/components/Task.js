@@ -14,7 +14,7 @@ function Task(props) {
                     {
                         text: "Yes",
                         onPress: () => {
-                            const url = ` https://birthday-christmas-app-backend.herokuapp.com/api/todo/${tdid}`
+                            const url = `https://birthday-christmas-app-backend.herokuapp.com/api/todo/${tdid}`
                             axios.delete(url).then(
                                     (response)=>{
                                         Alert.alert("Success", "Task Completed!", [{text: 'Okay'}])
