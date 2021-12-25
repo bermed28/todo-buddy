@@ -23,7 +23,7 @@ function ToDoScreen(){
     function fetchUserInformation() {
         AsyncStorage.getItem('userToken').then(
             (uid) => {
-                const url = ` https://birthday-christmas-app-backend.herokuapp.com//api/users/${uid}`
+                const url = `https://birthday-christmas-app-backend.herokuapp.com//api/users/${uid}`
                 axios.get(url).then((response) => {
                     setUser(response.data)
                     setRemainingTasks(response.data.tasks)
