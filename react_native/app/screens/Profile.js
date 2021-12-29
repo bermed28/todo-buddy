@@ -1,25 +1,30 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, Text, Button} from 'react-native';
+import {SafeAreaView, Text, Button, StatusBar} from 'react-native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import {useTheme} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
 function ProfileMain({navigation}){
+    const {colors} = useTheme();
     return (
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-            <Text>Profile Main</Text>
+            <Text style={{color: colors.text}}>Profile Main</Text>
             <Button title={"Delete Account"} onPress={() => navigation.navigate('DeleteAccount')}/>
         </SafeAreaView>
     );
 }
 
 function DeleteAccount(){
+    const {colors} = useTheme();
+    const theme = useTheme();
     return (
       <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-          <Text>Are You Sure you want to delete your account?</Text>
+          <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'}/>
+          <Text style={{color: colors.text}}>Are You Sure you want to delete your account?</Text>
           <Button title={"Yes I'm Sure, Delete"} color={"red"} onPress={() => console.log("Deleted")}/>
       </SafeAreaView>
     );
@@ -31,7 +36,7 @@ function Profile({navigation}) {
     function fetchUserInformation() {
         AsyncStorage.getItem('userToken').then(
             (uid) => {
-                const url = `http://localhost:8080/api/users/${uid}`
+                const url = `http://birthday-christmas-app-backend.herokuapp.com/api/users/${uid}`
                 console.log(url)
                 axios.get(url).then((response) => {
                     console.log("UsrerInfo:", response.data)
@@ -47,6 +52,7 @@ function Profile({navigation}) {
     }, []);
 
   return (
+
         <Stack.Navigator>
             <Stack.Screen
                 name={"ProfileMain"}

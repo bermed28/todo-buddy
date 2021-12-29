@@ -5,6 +5,7 @@ import * as Animatable from 'react-native-animatable';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import axios from 'axios';
+import {useTheme} from "@react-navigation/native";
 
 function SignUp({navigation}) {
     const [firstNameEntered, setFirstNameEntered] = useState(false);
@@ -22,6 +23,9 @@ function SignUp({navigation}) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const theme = useTheme();
+    const {colors} = useTheme();
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -55,15 +59,16 @@ function SignUp({navigation}) {
             <View style={styles.header}>
                 <Text style={styles.text_header}>Sign Up</Text>
             </View>
-            <Animatable.View animation={"fadeInUpBig"} style={styles.footer}>
+            <Animatable.View animation={"fadeInUpBig"} style={[styles.footer, {backgroundColor: colors.background}]}>
                 <KeyboardAwareScrollView>
-                    <Text style={styles.text_footer}>First Name</Text>
+                    <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a"}]}>First Name</Text>
                     <View style={styles.action}>
-                        <FontAwesome name="user-o" color={"#05375a"} size={20}/>
+                        <FontAwesome name="user-o" color={theme.dark ? "white" : "#05375a"} size={20}/>
                         <TextInput
                             autoCapitalize='none'
                             placeholder={"Enter your first name"}
-                            style={styles.textInput}
+                            placeholderTextColor={theme.dark ? "white" : 'black'}
+                            style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}
                             onChangeText={
                                 (fname) => {
                                     if(fname.length !== 0) {
@@ -81,13 +86,14 @@ function SignUp({navigation}) {
                             <Feather name={'check-circle'} color={'green'} size={20}/>
                         </Animatable.View>}
                     </View>
-                    <Text style={[styles.text_footer, {marginTop: 35}]}>Last Name</Text>
+                    <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a", marginTop: 35}]}>Last Name</Text>
                     <View style={styles.action}>
-                        <FontAwesome name="user-o" color={"#05375a"} size={20}/>
+                        <FontAwesome name="user-o" color={theme.dark ? "white" : "#05375a"} size={20}/>
                         <TextInput
                             autoCapitalize='none'
                             placeholder={"Enter your last name"}
-                            style={styles.textInput}
+                            placeholderTextColor={theme.dark ? "white" : 'black'}
+                            style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}
                             onChangeText={
                                 (lname) => {
                                     if(lname.length !== 0) {
@@ -105,13 +111,14 @@ function SignUp({navigation}) {
                             <Feather name={'check-circle'} color={'green'} size={20}/>
                         </Animatable.View>}
                     </View>
-                    <Text style={[styles.text_footer, {marginTop: 35}]}>Username</Text>
+                    <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a", marginTop: 35}]}>Username</Text>
                     <View style={styles.action}>
-                        <FontAwesome name="id-badge" color={"#05375a"} size={20}/>
+                        <FontAwesome name="id-badge" color={theme.dark ? "white" : "#05375a"} size={20}/>
                         <TextInput
                             autoCapitalize='none'
                             placeholder={"Enter your username"}
-                            style={styles.textInput}
+                            placeholderTextColor={theme.dark ? "white" : 'black'}
+                            style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}
                             onChangeText={
                                 (user) => {
                                     if(user.length !== 0) {
@@ -143,13 +150,14 @@ function SignUp({navigation}) {
                             <Text style={styles.errorMsg}>Username must be at least 4 characters long</Text>
                         </Animatable.View>
                     }
-                    <Text style={[styles.text_footer, {marginTop: 25}]}>Email</Text>
+                    <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a", marginTop: 35}]}>Email</Text>
                     <View style={styles.action}>
-                        <FontAwesome name="envelope-o" color={"#05375a"} size={20}/>
+                        <FontAwesome name="envelope-o" color={theme.dark ? "white" : "#05375a"} size={20}/>
                         <TextInput
                             autoCapitalize='none'
                             placeholder={"Enter your email address"}
-                            style={styles.textInput}
+                            placeholderTextColor={theme.dark ? "white" : 'black'}
+                            style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}
                             onChangeText={
                                 (emailAddress) => {
                                     if(emailAddress.length !== 0) {
@@ -168,14 +176,15 @@ function SignUp({navigation}) {
                         </Animatable.View>}
                     </View>
 
-                    <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
+                    <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a", marginTop: 35}]}>Password</Text>
                     <View style={styles.action}>
-                        <Feather name="lock" color={"#05375a"} size={20}/>
+                        <Feather name="lock" color={theme.dark ? "white" : "#05375a"} size={20}/>
                         <TextInput
                             autoCapitalize='none'
                             secureTextEntry={showPassword}
                             placeholder={"Enter your password"}
-                            style={styles.textInput}
+                            placeholderTextColor={theme.dark ? "white" : 'black'}
+                            style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}
                             onChangeText={(pass) => {
                                 setPassword(pass);
                                 if(pass.length >= 8){

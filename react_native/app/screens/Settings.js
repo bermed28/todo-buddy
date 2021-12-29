@@ -1,25 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, Text, Button} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Icon from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import {AuthContext} from "../components/context";
 
 const Stack = createNativeStackNavigator();
 
 function SettingsMain({navigation}){
+    const {colors} = useTheme();
     return (
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-            <Text>Settings Main</Text>
+            <Text style={{color: colors.text}}>Settings Main</Text>
             <Button title={"Delete Account"} onPress={() => navigation.navigate('DeleteAccount')}/>
         </SafeAreaView>
     );
 }
 
 function DeleteAccount(){
+    const {colors} = useTheme();
     return (
-        <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-            <Text>Are You Sure you want to delete your account?</Text>
+        <SafeAreaView style={{ justifyContent: 'center', alignItems: 'center', flex: 1}}>
+            <Text style={{color: colors.text}}>Are You Sure you want to delete your account?</Text>
             <Button title={"Yes I'm Sure, Delete"} color={"red"} onPress={() => console.log("Deleted")}/>
         </SafeAreaView>
     );

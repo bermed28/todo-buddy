@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {SafeAreaView, View, StyleSheet, RefreshControl} from 'react-native';
+import {TouchableOpacity, SafeAreaView, View, StyleSheet, RefreshControl, Switch} from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { StackActions } from '@react-navigation/native';
-import { Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch} from 'react-native-paper';
+import { Avatar, Title, Caption, Paragraph, Drawer, Text, useTheme} from 'react-native-paper';
 import {AuthContext} from "../components/context";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import profilePicture from '../assets/defaultAvatar.jpg';
@@ -12,13 +12,9 @@ import axios from "axios";
 
 function DrawerContent(props){
     const [user,setUser] = useState({});
-    const [isDarkMode, setDarkMode] = useState(false);
     const [remainingTasks, setRemainingTasks] = useState(-1);
-    const {signOut} = React.useContext(AuthContext);
-
-    const toggleTheme = () => {
-        setDarkMode(!isDarkMode);
-    }
+    const {signOut, toggleTheme} = React.useContext(AuthContext);
+    const paperTheme = useTheme();
 
     function fetchUserInformation() {
         AsyncStorage.getItem('userToken').then(
@@ -103,14 +99,10 @@ function DrawerContent(props){
                         />
                     </Drawer.Section>
                     <Drawer.Section title={"Preferences"}>
-                        <TouchableRipple onPress={() => {toggleTheme()}}>
-                            <View style={styles.preference}>
-                                <Text>Dark Mode</Text>
-                                <View pointerEvents="none">
-                                    <Switch value={isDarkMode}/>
-                                </View>
-                            </View>
-                        </TouchableRipple>
+                        <View style={styles.preference}>
+                            <Text>Dark Mode</Text>
+                            <Switch value={paperTheme.dark} onValueChange={() => {toggleTheme(paperTheme.dark)}}/>
+                        </View>
                     </Drawer.Section>
                 </SafeAreaView>
             </DrawerContentScrollView>

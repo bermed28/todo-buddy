@@ -2,17 +2,22 @@ import React from 'react';
 import {SafeAreaView, Text} from "react-native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useTheme} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
 function MainAboutScreen(){
+    const {colors} = useTheme();
+    const theme = useTheme();
+
     return(
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-            <Text>About</Text>
+            <Text style={{color: colors.text}}>About</Text>
         </SafeAreaView>
     );
 }
 function About({navigation}){
+
     return (
         <Stack.Navigator>
             <Stack.Screen

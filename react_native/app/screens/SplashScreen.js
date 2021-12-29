@@ -2,7 +2,7 @@ import React from 'react';
 import {DancingScript_400Regular, useFonts} from '@expo-google-fonts/dancing-script';
 import {Comfortaa_400Regular} from '@expo-google-fonts/comfortaa';
 import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {StackActions} from "@react-navigation/native";
+import {StackActions, useTheme} from "@react-navigation/native";
 import {LinearGradient} from 'expo-linear-gradient';
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -13,6 +13,9 @@ import logo from '../assets/icon.png'
 
 
 function SplashScreen({ navigation }){
+    const {colors} = useTheme();
+    const theme = useTheme();
+
     const [loaded] = useFonts({
         DancingScript_400Regular,
         Comfortaa_400Regular
@@ -30,8 +33,8 @@ function SplashScreen({ navigation }){
                 </Animatable.View>
             </View>
 
-            <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-                <Text style={styles.title}>The only place you'll need to keep track of your day-to-day tasks!</Text>
+            <Animatable.View animation="fadeInUpBig" style={[styles.footer, {backgroundColor: colors.background}]}>
+                <Text style={[styles.title, {color: colors.text}]}>The only place you'll need to keep track of your day-to-day tasks!</Text>
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => navigation.dispatch(StackActions.replace("LogIn"))}>
                         <LinearGradient colors={['#08d4c4','#01ab9d']} style={styles.signIn}>

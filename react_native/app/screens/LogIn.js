@@ -7,6 +7,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 
 import { AuthContext } from '../components/context';
+import {useTheme} from "@react-navigation/native";
 
 
 function LogIn({navigation}) {
@@ -20,6 +21,8 @@ function LogIn({navigation}) {
     const [foundUser, setFoundUser] = useState({username: "", password: "", valid: false});
 
     const {signIn} = useContext(AuthContext);
+    const {colors} = useTheme();
+    const theme = useTheme();
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -38,10 +41,9 @@ function LogIn({navigation}) {
             })
                 .then((response) => {
                         const userInfo = {username: user, password: pass, uid: response.data.uid, valid: response.data.valid}
-                        if (userInfo.valid === true) {
-                            setFoundUser(userInfo);
-                            signIn(userInfo);
-                        }
+                        setFoundUser(userInfo);
+                        signIn(userInfo);
+
                     }, () => {
                         Alert.alert("Invalid User", "Incorrect Username or Password", [{text: "Okay"}]);
                     }
@@ -55,27 +57,27 @@ function LogIn({navigation}) {
             <View style={styles.header}>
                 <Text style={styles.text_header}>Sign In</Text>
             </View>
-            <Animatable.View animation={"fadeInUpBig"} style={styles.footer}>
-                <Text style={styles.text_footer}>Username</Text>
+            <Animatable.View animation={"fadeInUpBig"} style={[styles.footer, {backgroundColor: colors.background}]}>
+                <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a"}]}>Username</Text>
                 <View style={styles.action}>
-                    <FontAwesome name="user-o" color={"#05375a"} size={20}/>
+                    <FontAwesome name="user-o" color={theme.dark ? "white" : "#05375a"} size={20}/>
                     <TextInput
                         autoCapitalize={'none'}
                         placeholder={"Enter your username"}
-                        style={styles.textInput}
-                        onChangeText={
-                            (user) => {
-                                if(user.trim().length >= 4) {
-                                    setUsername(user);
-                                    setUsernameEntered(true);
-                                    setIsValidUser(true);
-                                } else {
-                                    setUsername(user);
-                                    setUsernameEntered(false);
-                                    setIsValidUser(false);
-                                }
+                        placeholderTextColor={theme.dark ? "white" : "black"}
+                        style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}                        onChangeText={
+                        (user) => {
+                            if(user.trim().length >= 4) {
+                                setUsername(user);
+                                setUsernameEntered(true);
+                                setIsValidUser(true);
+                            } else {
+                                setUsername(user);
+                                setUsernameEntered(false);
+                                setIsValidUser(false);
                             }
                         }
+                    }
                         onEndEditing={() => {
                             if(username.length < 4) setIsValidUser(false);
                             else setIsValidUser(true);
@@ -91,14 +93,15 @@ function LogIn({navigation}) {
                         <Text style={styles.errorMsg}>Username must be at least 4 characters long</Text>
                     </Animatable.View>
                 }
-                <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
+                <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a", marginTop: 35}]}>Password</Text>
                 <View style={styles.action}>
-                    <Feather name="lock" color={"#05375a"} size={20}/>
+                    <Feather name="lock" color={theme.dark ? "white" : "#05375a"} size={20}/>
                     <TextInput
                         autoCapitalize={'none'}
                         secureTextEntry={showPassword}
                         placeholder={"Enter your password"}
-                        style={styles.textInput}
+                        placeholderTextColor={theme.dark ? "white" : "black"}
+                        style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}
                         onChangeText={
                             (pass) => {
                                 if(pass.trim().length >= 8) {
@@ -116,8 +119,8 @@ function LogIn({navigation}) {
                         }}
                     />
                     <TouchableOpacity onPress={handleShowPassword}>
-                        {showPassword === true && <Feather name="eye-off" color={"#05375a"} size={20}/>}
-                        {showPassword === false && <Feather name="eye" color={"#05375a"} size={20}/>}
+                        {showPassword === true && <Feather name="eye-off" color={theme.dark ? "white" : "#05375a"} size={20}/>}
+                        {showPassword === false && <Feather name="eye" color={theme.dark ? "white" : "#05375a"} size={20}/>}
                     </TouchableOpacity>
                 </View>
                 {isValidPassword ? null :

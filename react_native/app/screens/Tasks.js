@@ -9,27 +9,26 @@ import {
     Button,
     Dimensions,
     Platform,
-    StatusBar, TouchableOpacity, Alert
+    StatusBar,
+    TouchableOpacity,
+    Alert
 } from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import * as Animatable from 'react-native-animatable';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {useTheme} from '@react-navigation/native';
 import Icon from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import DatePicker from 'react-native-datepicker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {NavigationEvents} from "react-navigation";
 
 import Task from '../components/Task';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import {LinearGradient} from "expo-linear-gradient";
 
 const Stack = createNativeStackNavigator();
 
 const wait = (timeout) => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
+    return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
 function ToDoListMain({navigation}){
@@ -88,6 +87,10 @@ function ToDoListMain({navigation}){
 }
 
 function ManageTask({route, navigation}){
+
+    const {colors} = useTheme();
+    const theme = useTheme();
+
     const {taskName, taskDate, taskTime} = route.params;
 
     const tempDate = taskDate.split('-')
@@ -153,16 +156,16 @@ function ManageTask({route, navigation}){
     }
     console.log(date)
     return (
-        <View style={styles.container}>
-            <StatusBar backgroudColor={"#009387"} barStyle={'light-cotent'}/>
-            <Animatable.View animation={'fadeInUpBig'} style={styles.footer}>
-                <Text style={styles.text_footer}>Task Name</Text>
+        <View style={theme.dark ? styles.darkContainer : styles.container}>
+            <Animatable.View animation={'fadeInUpBig'} style={[styles.footer, {backgroundColor: theme.dark ? "#333333" : "#ffffff"}]}>
+                <Text style={[styles.text_footer, {color: theme.dark ? "#ffffff" : "#05375a"}]}>Task Name</Text>
                 <View style={styles.action}>
-                    <FontAwesome name={'user-o'} color={"#05375a"} size={20}/>
+                    <FontAwesome name={'user-o'} color={theme.dark ? "#ffffff" : "#05375a"} size={20}/>
                     <TextInput
                         autoCapitalize={'words'}
                         placeholder={taskName}
-                        style={styles.textInput}
+                        placeholderTextColor={theme.dark ? "white" : "black"}
+                        style={[styles.textInput, {color: theme.dark ? "#ffffff" : "#05375a",}]}
                         onChangeText={
                             (task) => {
                                 if(task.length !== 0){
@@ -183,22 +186,22 @@ function ManageTask({route, navigation}){
                     }
 
                 </View>
-                <Text style={[styles.text_footer, {marginTop: 25}]}>Remind Me By:</Text>
+                <Text style={[styles.text_footer,  {color: theme.dark ? "#ffffff" : "#05375a", marginTop: 25}]}>Remind Me By:</Text>
                 <View style={styles.action}>
-                    <FontAwesome name={'calendar'} color={"#05375a"} size={20}/>
+                    <FontAwesome name={'calendar'} color={theme.dark ? "#ffffff" : "#05375a"} size={20}/>
                     <DateTimePicker
-                        style={{width: 150}}
+                        style={{backgroundColor: "white", width: 125, marginLeft: 15}}
                         value={editedDate ? date : placeholderDate}
                         mode="date"
                         dateFormat="longdate"
                         onChange={(event, date) => {setEditedDate(true); setDate(date);}}
                     />
                 </View>
-                <Text style={[styles.text_footer, {marginTop: 25}]}>Remind Me At:</Text>
+                <Text style={[styles.text_footer, {color: theme.dark ? "white" : "#05375a", marginTop: 25}]}>Remind Me At:</Text>
                 <View style={styles.action}>
-                    <FontAwesome name={'clock-o'} color={"#05375a"} size={25}/>
+                    <FontAwesome name={'clock-o'} color={theme.dark ? "#ffffff" : "#05375a"} size={25}/>
                     <DateTimePicker
-                        style={{width: 115}}
+                        style={{backgroundColor: "white", width: 90, marginLeft: 15}}
                         value={editedTime ? time : placeholderDate}
                         mode="time"
                         onChange={(event, time) => {setEditedTime(true); setTime(time)}}
@@ -225,6 +228,9 @@ function CreateTask({navigation}){
 
 
     const [uid, setUID] = useState(-1);
+
+    const {colors} = useTheme();
+    const theme = useTheme();
 
     function fetchUserInformation() {
         AsyncStorage.getItem('userToken').then((uid) => {setUID(uid);});
@@ -259,27 +265,27 @@ function CreateTask({navigation}){
 
 
     return (
-        <View style={styles.container}>
+        <View style={theme.dark ? styles.darkContainer : styles.container}>
             <StatusBar backgroudColor={"#009387"} barStyle={'light-cotent'}/>
-            <Animatable.View animation={'fadeInUpBig'} style={styles.footer}>
-                <Text style={styles.text_footer}>Task Name</Text>
+            <Animatable.View animation={'fadeInUpBig'} style={[styles.footer, {backgroundColor: theme.dark ? "#333333" : "#ffffff"}]}>
+                <Text style={[styles.text_footer, {color: theme.dark ? "#ffffff" : "#05375a"}]}>Task Name</Text>
                 <View style={styles.action}>
-                    <FontAwesome name={'user-o'} color={"#05375a"} size={20}/>
+                    <FontAwesome name={'user-o'} color={theme.dark ? "#ffffff" : "#05375a"} size={20}/>
                     <TextInput
                         autoCapitalize={'words'}
                         placeholder={"Enter Task Name"}
-                        style={styles.textInput}
-                        onChangeText={
-                            (task) => {
-                                if(task.length !== 0){
-                                    setTaskName(task);
-                                    setTaskNameEntered(true);
-                                } else {
-                                    setTaskName(task);
-                                    setTaskNameEntered(false);
-                                }
+                        placeholderTextColor={theme.dark ? "white" : "black"}
+                        style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}                        onChangeText={
+                        (task) => {
+                            if(task.length !== 0){
+                                setTaskName(task);
+                                setTaskNameEntered(true);
+                            } else {
+                                setTaskName(task);
+                                setTaskNameEntered(false);
                             }
                         }
+                    }
                     />
                     {taskNameEntered ?
                         <Animatable.View animation={'bounceIn'}>
@@ -289,22 +295,23 @@ function CreateTask({navigation}){
                     }
 
                 </View>
-                <Text style={[styles.text_footer, {marginTop: 25}]}>Remind Me By:</Text>
+                <Text style={[styles.text_footer, {color: theme.dark ? "#ffffff" : "#05375a", marginTop: 25}]}>Remind Me By:</Text>
                 <View style={styles.action}>
-                    <FontAwesome name={'calendar'} color={"#05375a"} size={20}/>
+                    <FontAwesome name={'calendar'} color={theme.dark ? "#ffffff" : "#05375a"} size={20}/>
                     <DateTimePicker
-                        style={{width: 150}}
+                        style={{backgroundColor: "white", width: 125, marginLeft: 15}}
                         value={date}
                         mode="date"
                         dateFormat="longdate"
-                        onChange={(event, date) => {setDate(date)}}
+                        onChange={(event, date) => {setDate(date);}}
                     />
                 </View>
-                <Text style={[styles.text_footer, {marginTop: 25}]}>Remind Me At:</Text>
+
+                <Text style={[styles.text_footer, {color: theme.dark ? "#ffffff" : "#05375a", marginTop: 25}]}>Remind Me At:</Text>
                 <View style={styles.action}>
-                    <FontAwesome name={'clock-o'} color={"#05375a"} size={25}/>
+                    <FontAwesome name={'clock-o'} color={theme.dark ? "#ffffff" : "#05375a"} size={25}/>
                     <DateTimePicker
-                        style={{width: 115}}
+                        style={{backgroundColor: "white", width: 90, marginLeft: 15}}
                         value={time}
                         mode="time"
                         onChange={(event, time) => {setTime(time)}}
@@ -397,6 +404,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffff",
         minHeight: Math.round(Dimensions.get('screen').height)
     },
+    darkContainer:{
+        flex: 1,
+        backgroundColor: "#000000",
+        minHeight: Math.round(Dimensions.get('screen').height)
+    },
     header:{
         flex: 1,
         justifyContent: 'flex-end',
@@ -417,7 +429,6 @@ const styles = StyleSheet.create({
         fontSize: 30
     },
     text_footer:{
-        color: "#05375a",
         fontSize: 18
     },
     action:{
@@ -431,7 +442,6 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: Platform.OS === 'ios' ? 0 : -12,
         paddingLeft: 10,
-        color: "#05375a",
     },
     button: {
         alignItems: "center",
