@@ -1,16 +1,21 @@
-node_modules/
-.expo/
-dist/
-npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/
-/venv/
-/.idea/
+__pycache__/
+controller/__pycache__/
+model/__pycache__/
+config/__pycache__/
+
+react_native/node_modules/
+react_native/.expo/
+react_native/dist/
+react_native/npm-debug.*
+react_native/*.jks
+react_native/*.p8
+react_native/*.p12
+react_native/*.key
+react_native/*.mobileprovision
+react_native/*.orig.*
+react_native/web-build/
+react_native/venv/
+react_native/.idea/
 
 # macOS
-.DS_Store
+react_native/.DS_Store
