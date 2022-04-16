@@ -136,7 +136,7 @@ function ManageTask({route, navigation}){
         const defaultTime = formatTime(placeholderDate.getHours(), placeholderDate.getMinutes(), placeholderDate.getSeconds())
         const inputTime = formatTime(time.getHours(), time.getMinutes(), time.getSeconds())
         const defaultDate = formatDate(placeholderDate.getFullYear(), (placeholderDate.getMonth() + 1), placeholderDate.getDate())
-        const inputDate = formatDate(date.getFullYear(),date.getMonth(),date.getDate())
+        const inputDate = formatDate(date.getFullYear(),(date.getMonth() + 1) ,date.getDate())
         console.log("DEFAULT TIME:", defaultTime)
         const json = {tdtask: tName, tdtime: editedTime ? inputTime : defaultTime , tddate: editedDate ? inputDate : defaultDate, uid: uid};
         console.log("JSON:",json)
@@ -245,7 +245,7 @@ function CreateTask({navigation}){
             Alert.alert("Empty Fields", "Input Fields Cannot Be Empty", [{text: 'Okay'}])
         } else {
             const inputTime = time.getHours() + ":" + time.getMinutes() + ":" +time.getSeconds()
-            const inputDate = date.getFullYear() + "-" + date.getMonth() + '-' + date.getDay()
+            const inputDate = date.getFullYear() + "-" + (date.getMonth() + 1) + '-' + date.getDate()
             const json = {tdtask: taskName, tdtime: inputTime, tddate: inputDate, uid: uid};
             const url = 'https://birthday-christmas-app-backend.herokuapp.com/api/todo'
             axios.post(url, json, {
