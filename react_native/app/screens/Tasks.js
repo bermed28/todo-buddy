@@ -164,6 +164,7 @@ function ManageTask({route, navigation}){
                     <TextInput
                         autoCapitalize={'words'}
                         placeholder={taskName}
+                        defaultValue={taskName}
                         placeholderTextColor={theme.dark ? "white" : "black"}
                         style={[styles.textInput, {color: theme.dark ? "#ffffff" : "#05375a",}]}
                         onChangeText={
