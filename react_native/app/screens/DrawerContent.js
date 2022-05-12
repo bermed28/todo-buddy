@@ -92,11 +92,11 @@ function DrawerContent(props){
                             icon={({color, size}) => <Icon name="cog-outline" color={color} size={size}/>}
                             onPress={() => {props.navigation.navigate("Settings")}}
                         />
-                        <DrawerItem
-                            label="About bermedDev"
-                            icon={({color, size}) => <Icon name="account-check" color={color} size={size}/>}
-                            onPress={() => {props.navigation.navigate("About")}}
-                        />
+                        {/*<DrawerItem*/}
+                        {/*    label="About bermedDev"*/}
+                        {/*    icon={({color, size}) => <Icon name="account-check" color={color} size={size}/>}*/}
+                        {/*    onPress={() => {props.navigation.navigate("About")}}*/}
+                        {/*/>*/}
                     </Drawer.Section>
                     <Drawer.Section title={"Preferences"}>
                         <View style={styles.preference}>

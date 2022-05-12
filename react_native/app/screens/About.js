@@ -12,7 +12,7 @@ function MainAboutScreen(){
 
     return(
         <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-            <Text style={{color: colors.text}}>About</Text>
+            <Text style={{color: colors.text, justifyContent: "center"}}>About</Text>
         </SafeAreaView>
     );
 }
