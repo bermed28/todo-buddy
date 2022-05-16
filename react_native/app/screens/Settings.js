@@ -14,6 +14,7 @@ import {useTheme as useNavigationTheme} from '@react-navigation/native';
 import {useTheme as usePaperTheme} from 'react-native-paper';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Icon from "react-native-vector-icons/Ionicons";
+import { SocialIcon } from 'react-native-elements';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import {AuthContext} from "../components/context";
@@ -25,7 +26,7 @@ function SettingsMain({navigation}){
     const paperTheme = usePaperTheme();
     const {signOut, toggleTheme} = React.useContext(AuthContext);
     return (
-        <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+        <SafeAreaView style={{justifyContent: "center", alignItems: 'center', marginBottom: 150, flex: 1}}>
             <View style={[styles.createTaskButton, styles.preference, {borderWidth: 1, borderColor: "#009387"}]}>
                 <Text style={[styles.textSign, {color: "#009387"}]}>Dark Mode</Text>
                 <Switch value={paperTheme.dark} onValueChange={() => {toggleTheme(paperTheme.dark)}}/>
@@ -36,6 +37,15 @@ function SettingsMain({navigation}){
             <TouchableOpacity onPress={() => navigation.navigate('DeleteAccount')} style={[styles.createTaskButton, {borderWidth: 1, backgroundColor: "red", borderColor: "red"}]}>
                 <Text style={[styles.textSign, {color: "#ffffff"}]}>Delete Account</Text>
             </TouchableOpacity>
+
+            <Text style={[styles.icons, {color: colors.text, paddingBottom: 75, fontWeight: "bold"}]}>Find BermedDev Studios on Social Media!</Text>
+            <View style={styles.icons}>
+                <SocialIcon type={'facebook'}/>
+                <SocialIcon type={'twitter'}/>
+                <SocialIcon type={'instagram'}/>
+            </View>
+
+
         </SafeAreaView>
     );
 }
@@ -47,7 +57,9 @@ function DeleteAccount(){
             <Text style={[styles.textSign, {color: colors.text}]}>Are You Sure you want to delete your account?</Text>
             <Text style={[styles.textSign, {color: colors.text}]}>This is an action you cannot revert.</Text>
 
-            <Button title={"Yes I'm Sure, Delete"} color={"red"} onPress={() => {signOut(); console.log("Deleted")}}/>
+            <TouchableOpacity onPress={() => {signOut(); console.log("Deleted")}} style={[styles.createTaskButton, {borderWidth: 1, backgroundColor: "red", borderColor: "red"}]}>
+                <Text style={[styles.textSign, {color: "#ffffff"}]}>Yes I'm sure</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
@@ -96,8 +108,7 @@ function Settings({navigation}) {
                     headerTintColor: "#ffff",
                     headerStyle: {
                         backgroundColor: "#009873"
-                    },
-                    headerLeft: () => (<Icon.Button name={'ios-menu'} size={25} backgroundColor={'#00000000'} onPress={() => navigation.openDrawer()}/>)
+                    }
                 }}
             />
         </Stack.Navigator>
@@ -194,6 +205,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingVertical: 12,
         paddingHorizontal: 16
+    },
+    icons:{
+        flexDirection: "row",
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 0
     }
 });
 

@@ -8,7 +8,7 @@ import Settings from "./Settings";
 import Profile from "./Profile";
 import Tasks from "./Tasks";
 import DrawerContent from "./DrawerContent";
-import About from './About';
+import Help from './Help';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
@@ -100,7 +100,7 @@ function ToDo() {
     return (
         <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/>}>
             <Drawer.Screen name={"ToDoMain"} component={ToDoScreen} options={{headerShown: false}}/>
-            <Drawer.Screen name={"About"} component={About} options={{headerShown: false}}/>
+            <Drawer.Screen name={"Help"} component={Help} options={{headerShown: false}}/>
         </Drawer.Navigator>
         // <Text>Test</Text>
     );

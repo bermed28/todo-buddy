@@ -69,15 +69,16 @@ function ProfileMain({navigation}){
                     enabled={true}
                 />
             }
-            contentContainerStyle={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-            <View style={{flexDirection: "row", marginTop: 15}}>
+            contentContainerStyle={{justifyContent:"center", alignItems: 'center', flex: 1}}
+        >
+            <View style={{flexDirection: "column", marginTop: 15}}>
                 <Avatar.Image source={profilePicture} size={150}/>
             </View>
-            <View>
+            <View style={{flexDirection: "column", marginBottom: 20, paddingBottom: 1, padding: 20, borderBottomWidth: 1, borderBottomColor:"rgba(150,150,150,1.0)", alignItems:"center", justifyContent: "center"}}>
                 <Text style={[styles.title, {color: colors.text}]}>{`${user.ufirstname} ${user.ulastname}`}</Text>
-                <Text style={[styles.subTitle, {color: colors.text}]}>{`@${user.username}`}</Text>
-                <Text style={{color: colors.text}}>{`${user.tasks} Pending Tasks`}</Text>
+                <Text style={[styles.subTitle, {fontSize: 30, color: colors.text}]}>{`${user.username}`}</Text>
             </View>
+            <Text style={{color: colors.text, fontSize: 20, justifyContent: "center"}}>{`${user.tasks} Pending Tasks`}</Text>
 
             <View style={styles.button}>
                 <TouchableOpacity onPress={() => navigation.navigate('EditProfile')} style={[styles.editProfileButton, {borderWidth: 1, borderColor: "#009387"}]}>
