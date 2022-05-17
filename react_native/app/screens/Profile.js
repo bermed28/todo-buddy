@@ -223,7 +223,8 @@ function EditProfile({ navigation }) {
             />
             <TextInput
               autoCapitalize={"words"}
-              placeholder={"Enter a new First Name"}
+              placeholder={user.ufirstname}
+              defaultValue={user.ufirstname}
               placeholderTextColor={theme.dark ? "white" : "#8c8c8c"}
               style={[
                 styles.textInput,
@@ -261,7 +262,8 @@ function EditProfile({ navigation }) {
             />
             <TextInput
               autoCapitalize={"words"}
-              placeholder={"Enter a new Last Name"}
+              placeholder={user.ulastname}
+              defaultValue={user.ulastname}
               placeholderTextColor={theme.dark ? "white" : "#8c8c8c"}
               style={[
                 styles.textInput,
@@ -299,7 +301,8 @@ function EditProfile({ navigation }) {
             />
             <TextInput
               autoCapitalize="none"
-              placeholder={"Enter a new Username"}
+              placeholder={user.username}
+              defaultValue={user.username}
               placeholderTextColor={theme.dark ? "white" : "#8c8c8c"}
               style={[
                 styles.textInput,
@@ -353,7 +356,8 @@ function EditProfile({ navigation }) {
             />
             <TextInput
               autoCapitalize="none"
-              placeholder="Enter a new Email"
+              placeholder={user.uemail}
+              defaultValue={user.uemail}
               placeholderTextColor={theme.dark ? "white" : "#8c8c8c"}
               style={[
                 styles.textInput,
@@ -393,7 +397,7 @@ function EditProfile({ navigation }) {
             <TextInput
               autoCapitalize={"none"}
               secureTextEntry={showPassword}
-              placeholder={"Enter a new Password"}
+              placeholder={"Enter a new password"}
               placeholderTextColor={theme.dark ? "white" : "#8c8c8c"}
               style={[
                 styles.textInput,

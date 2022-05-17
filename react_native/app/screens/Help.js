@@ -17,15 +17,19 @@ function MainHelpScreen() {
       </Text>
       {faq.map((question) => {
         return (
-          <View key={question.id}>
+          <View style={styles.faqText} key={question.id}>
             <Text
               style={[
                 theme.dark ? styles.darkItem : styles.item,
-                styles.faqText,
+                { fontWeight: "bold", textAlign: "justify" },
+              ]}>
+              {`${question.question}`}
+            </Text>
+            <Text style={[
+                theme.dark ? styles.darkItem : styles.item,
                 { textAlign: "justify" },
-              ]}
-            >
-              {`${question.id}) ${question.question}\n\n${question.answer}`}
+              ]}>
+              {`${question.answer}`}
             </Text>
           </View>
         );
@@ -62,7 +66,8 @@ function Help({ navigation }) {
 const styles = StyleSheet.create({
   faqText: {
     borderWidth: 2,
-    borderRadius: 10,
+    borderRadius: 20,
+    marginBottom: 20,
     borderColor: "#009873",
   },
   container: {
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   item: {
-    padding: 20,
+    padding: 12,
     fontSize: 15,
     marginTop: 5,
     textAlign: "justify",
