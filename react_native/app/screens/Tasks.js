@@ -80,7 +80,12 @@ function ToDoListMain({navigation}){
                     })
                 }
             </View>
-            <Button title={"Create New Task"} onPress={() => navigation.navigate('CreateTask')}/>
+
+            <View style={styles.button}>
+                <TouchableOpacity onPress={() => navigation.navigate('CreateTask')} style={[styles.createTaskButton, {borderWidth: 1, borderColor: "#009387"}]}>
+                    <Text style={[styles.textSign, {color: "#009387"}]}>Create New Task</Text>
+                </TouchableOpacity>
+            </View>
 
         </ScrollView>
     );
@@ -276,7 +281,8 @@ function CreateTask({navigation}){
                         autoCapitalize={'words'}
                         placeholder={"Enter Task Name"}
                         placeholderTextColor={theme.dark ? "white" : "black"}
-                        style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}                        onChangeText={
+                        style={[styles.textInput, {color: theme.dark ? "white" : "#05375a"}]}
+                        onChangeText={
                         (task) => {
                             if(task.length !== 0){
                                 setTaskName(task);
@@ -448,6 +454,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 50
     },
+    createTaskButton:{
+        width: "90%",
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10
+    },
     signIn:{
         width: "100%",
         height: 50,
@@ -471,6 +484,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10
-    }
+    },
+
 });
 export default Tasks;

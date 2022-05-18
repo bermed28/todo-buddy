@@ -93,9 +93,9 @@ function DrawerContent(props){
                             onPress={() => {props.navigation.navigate("Settings")}}
                         />
                         <DrawerItem
-                            label="About bermedDev"
-                            icon={({color, size}) => <Icon name="account-check" color={color} size={size}/>}
-                            onPress={() => {props.navigation.navigate("About")}}
+                            label="Help"
+                            icon={({color, size}) => <Icon name="help" color={color} size={size}/>}
+                            onPress={() => {props.navigation.navigate("Help")}}
                         />
                     </Drawer.Section>
                     <Drawer.Section title={"Preferences"}>

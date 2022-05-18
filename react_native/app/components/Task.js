@@ -13,7 +13,7 @@ function Task(props) {
     const tdid = props.id
 
     return(
-        <View style={theme.dark ? styles.darkItem : styles.item}>
+        <View style={[theme.dark ? styles.darkItem : styles.item, styles.container]}>
             <TouchableOpacity onPress={() =>{
 
                 Alert.alert("Complete Task", "Are you sure you want to complete this task?", [
@@ -52,22 +52,30 @@ function Task(props) {
 
 const styles = StyleSheet.create({
     item:{
-        backgroundColor: "#ffffff",
+        backgroundColor: "rgba(247,247,247,1.0)", //"#ffffff",
         padding: 15,
         borderRadius: 10,
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent:'space-between',
-        marginBottom: 20
+        marginBottom: 20,
+        marginHorizontal: 10,
+        borderWidth: 1,
+        borderColor: "black",
+        width: "95%"
     },
     darkItem: {
-        backgroundColor: "#333333",
+        backgroundColor: "rgba(70,70,70,1.0)", //"#333333",
         padding: 15,
         borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'space-between',
-        marginBottom: 20
+        marginHorizontal: 10,
+        borderWidth: 1,
+        borderColor: "white",
+        marginBottom: 20,
+        width: "95%"
     },
     itemleft:{
         flexDirection: 'row',
